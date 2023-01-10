@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Pearl.DataAccessObjects.SqlServerDACManager" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>SqlServerDACManager.cs</FileName>
+      <HashCode>AAAIAAABAAAAAAEABAAABFAAAAAAQAABAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Pearl.DataAccessObjects.OracleDACManager" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>OracleDACManager.cs</FileName>
+      <HashCode>AAAIAAABAAAAAAEABAAABFAAAAAAQAABAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Pearl.DataAccessObjects.OleDbDACManager" BaseTypeListCollapsed="true">
+    <Position X="11" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>OleDbDACManager.cs</FileName>
+      <HashCode>AAAIAAABAAAAAAEABAAABFAAAAAAQAABAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Pearl.DataAccessObjects.OdbcDACManager" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>OdbcDACManager.cs</FileName>
+      <NewMemberFileName>ODBCDACManager.cs</NewMemberFileName>
+      <HashCode>AAAIAAABAAAAAAEABAAABFAAAAAAQAABAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Pearl.DataAccessObjects.DACManagerFactory">
+    <Position X="0.5" Y="3.75" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>DAO.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+  </Class>
+  <Class Name="Pearl.DataAccessObjects.MySqlDACManager">
+    <Position X="18" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>MySqlDACManager.cs</FileName>
+      <HashCode>AAAIAAABEAAAAAEABAAABFAAAAAAQAABAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Pearl.DataAccessObjects.IDACManager">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <FileName>IDACManager.cs</FileName>
+      <HashCode>AAAIAAABAAAAAAEABAAABEAAAAAAAAABAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Pearl.DataAccessObjects.DACManagers">
+    <Position X="4" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>DACManagers.cs</FileName>
+      <HashCode>AAEAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAABQAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>
