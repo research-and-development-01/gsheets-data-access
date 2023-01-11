@@ -1,0 +1,18 @@
+﻿CREATE TABLE [dbo].[Contracts] (
+    [Id]               INT  NOT NULL Primary Key,
+    [ContractStatusId] INT  NULL,
+    [EffectiveDate]    DATE NULL,
+    [ContractTypeId]   INT  NULL,
+    [WorkerTypeId]     INT  NULL,
+    [ContractTimeId]   INT  NULL,
+    [EmployeeId]       INT  NULL,
+	FOREIGN KEY (ContractStatusId) REFERENCES ContractStatuses(Id),
+	FOREIGN KEY (ContractTypeId) REFERENCES ContractTypes(Id),
+	FOREIGN KEY (WorkerTypeId) REFERENCES WorkerTypes(Id),
+	FOREIGN KEY (ContractTimeId) REFERENCES TimeTypes(Id),
+	FOREIGN KEY (EmployeeId) REFERENCES Employees(Id)
+);
+
+--after creating employee
+ALTER TABLE [Contracts] 
+ADD FOREIGN KEY (EmployeeId) REFERENCES Employees(Id);

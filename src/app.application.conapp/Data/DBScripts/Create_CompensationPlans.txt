@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[CompensationPlans] (
+    [Id]                 INT   NOT NULL PRIMARY KEY,
+    [EmployeeId]         INT   NULL,
+    [EffectiveDate]      DATE  NULL,
+    [BPRate]             MONEY NULL,
+    [BPFrequencyId]      INT   NULL,
+    [BPTypeId]           INT   NULL,
+    [TotalPayAnnualized] MONEY NULL,
+    [CurrencyId]         INT   NULL,
+	FOREIGN KEY (EmployeeId) REFERENCES Employees(Id),
+	FOREIGN KEY (BPFrequencyId) REFERENCES PlanFrequencies(Id),
+	FOREIGN KEY (BPTypeId) REFERENCES PlanTypes(Id),
+	FOREIGN KEY (CurrencyId) REFERENCES Currencies(Id),
+);
+
+
+--after creating employee
+ALTER TABLE [CompensationPlans] 
+ADD FOREIGN KEY (EmployeeId) REFERENCES Employees(Id);
