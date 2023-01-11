@@ -31,9 +31,9 @@ public class GSheetService : IGSheetService
 
         _log.LogInformation("Config: {ConectionStringSqlServer}", sqlServerConnectionString);
 
-        _log.LogInformation("Config: {SettingA}", _gSheetOptions.SettingA);
-        _log.LogInformation("Config: {SettingB}", _gSheetOptions.SettingB);
-
+        _log.LogInformation("ConfigSheet: {HeaderRow}", _gSheetOptions.HeaderRow);
+        _log.LogInformation("ConfigSheet: {InputSheetId}", _gSheetOptions.InputSheetId);
+        _log.LogInformation("ConfigSheet: {OutputSheetName}", string.Format(_gSheetOptions.OutputSheetName??"NewSheet", DateTime.Now.ToString("yyyyMMdd-hhmmss")));
     }
 
 }

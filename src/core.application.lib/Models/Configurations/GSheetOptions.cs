@@ -3,7 +3,7 @@ namespace core.application.lib.Models.Configurations;
 
 public sealed class GSheetOptions
 {
-    public string? SettingA { get; set; }
-    public string? SettingB { get; set; }
-    public string? SettingC { get; set; }
+    public int? HeaderRow { get; set; }
+    public string? InputSheetId { get; set; }
+    public string? OutputSheetName { get; set; }
 }
