@@ -1,4 +1,6 @@
-﻿using core.application.lib.Models.Configurations;
+﻿using app.application.conapp.Services;
+using core.application.lib.Interfaces;
+using core.application.lib.Models.Configurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

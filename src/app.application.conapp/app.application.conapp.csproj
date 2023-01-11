@@ -24,11 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\core.application.lib\core.application.lib.csproj" />
+    <ProjectReference Include="..\data.application.lib\data.application.lib.csproj" />
   </ItemGroup>
 
 </Project>

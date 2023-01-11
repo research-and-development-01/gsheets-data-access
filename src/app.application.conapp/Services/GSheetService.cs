@@ -1,10 +1,11 @@
-﻿using core.application.lib.Models.Common;
+﻿using core.application.lib.Interfaces;
+using core.application.lib.Models.Common;
 using core.application.lib.Models.Configurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace app.application.conapp;
+namespace app.application.conapp.Services;
 
 public class GSheetService : IGSheetService
 {
@@ -13,7 +14,7 @@ public class GSheetService : IGSheetService
     private readonly GSheetOptions _gSheetOptions;
 
     public GSheetService(
-        ILogger<GSheetService> log, 
+        ILogger<GSheetService> log,
         IConfiguration config,
         IOptions<GSheetOptions> gSheetOptions)
     {

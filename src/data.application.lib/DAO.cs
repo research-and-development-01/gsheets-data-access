@@ -10,20 +10,20 @@ public abstract class DACManagerFactory
 	}
 
 
-	public static IDACManager GetDACManager(string ConnectionString, DataAccessObjectsCore.DACManagers DACManager)
+	public static IDACManager GetDACManager(string ConnectionString, DACManagers DACManager)
 	{
 		if (DateTime.Now <= new DateTime(2023, 12, 30))
 		{
 			switch (DACManager)
 			{
 				case DACManagers.SqlServerDACManager:
-					return new DataAccessObjectsCore.SqlServerDACManager(ConnectionString);
+					return new SqlServerDACManager(ConnectionString);
 
 				case DACManagers.SQLiteDACManager:
-					return new DataAccessObjectsCore.SQLiteDACManager(ConnectionString);
+					return new SQLiteDACManager(ConnectionString);
 
 				case DACManagers.OracleDACManager:
-					return new DataAccessObjectsCore.OracleDACManager(ConnectionString);
+					return new OracleDACManager(ConnectionString);
 
 				case DACManagers.OleDbDACManager:
 					return null;//new DataAccessObjectsCore.OleDbDACManager(ConnectionString);
@@ -45,7 +45,7 @@ public abstract class DACManagerFactory
 	}
 
 
-	public static string BuildTrustedCS(string Server, string DataBase, string TimeOut, DataAccessObjectsCore.DACManagers DACManager)
+	public static string BuildTrustedCS(string Server, string DataBase, string TimeOut, DACManagers DACManager)
 	{
 		if (DateTime.Now <= new DateTime(2023, 12, 30))
 		{

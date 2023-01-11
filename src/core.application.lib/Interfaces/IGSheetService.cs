@@ -1,4 +1,4 @@
-﻿namespace app.application.conapp;
+﻿namespace core.application.lib.Interfaces;
 
 public interface IGSheetService
 {
