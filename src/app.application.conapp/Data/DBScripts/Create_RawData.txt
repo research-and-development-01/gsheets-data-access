@@ -1,0 +1,91 @@
+﻿CREATE TABLE [dbo].[RawData]
+(
+	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY,
+	[BatchId] nvarchar(128),
+	[Full Legal Name] nvarchar(128),
+	[Legal Name - First Name] nvarchar(128),
+	[Legal Name - Last Name] nvarchar(128),	
+	[Employee ID] nvarchar(128),
+	[Compensation Effective Date] nvarchar(128),
+	[Base Pay Rate] nvarchar(128),
+	[Base Pay Frequency] nvarchar(128),
+	[Compensation Plan Type] nvarchar(128),
+	[Total Pay Annualized Amount] nvarchar(128),
+	[Currency] nvarchar(128),
+	[Original Hire Date] nvarchar(128),
+	[Hire Date] nvarchar(128),
+	[Location] nvarchar(128),
+	[Job Title] nvarchar(128),	
+	[Department] nvarchar(128),
+	[Division] nvarchar(128),
+	[Reporting To] nvarchar(128),
+	[Employee Status] nvarchar(128),
+	[Status Effective Date] nvarchar(128),
+	[Worker Type] nvarchar(128),
+	[Employee Type]	nvarchar(128),
+	[Time Type]	nvarchar(128),
+	[Work Email] nvarchar(128),
+	[Termination Date] nvarchar(128)
+);
+
+
+Select
+	[Id], 
+	[BatchId],
+	[Full Legal Name],
+	[Legal Name - First Name],
+	[Legal Name - Last Name],	
+	[Employee ID],
+	[Compensation Effective Date],
+	[Base Pay Rate],
+	[Base Pay Frequency],
+	[Compensation Plan Type],
+	[Total Pay Annualized Amount],
+	[Currency],
+	[Original Hire Date],
+	[Hire Date],
+	[Location],
+	[Job Title],	
+	[Department],
+	[Division],
+	[Reporting To],
+	[Employee Status],
+	[Status Effective Date],
+	[Worker Type],
+	[Employee Type],
+	[Time Type],
+	[Work Email],
+	[Termination Date]
+From RawData;
+
+
+INSERT INTO RawData(
+	[BatchId],
+	[Full Legal Name],
+	[Legal Name - First Name],
+	[Legal Name - Last Name],	
+	[Employee ID],
+	[Compensation Effective Date],
+	[Base Pay Rate],
+	[Base Pay Frequency],
+	[Compensation Plan Type],
+	[Total Pay Annualized Amount],
+	[Currency],
+	[Original Hire Date],
+	[Hire Date],
+	[Location],
+	[Job Title],	
+	[Department],
+	[Division],
+	[Reporting To],
+	[Employee Status],
+	[Status Effective Date],
+	[Worker Type],
+	[Employee Type],
+	[Time Type],
+	[Work Email],
+	[Termination Date]
+)
+VALUES(
+
+);

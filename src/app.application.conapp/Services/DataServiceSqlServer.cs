@@ -3,6 +3,7 @@ using core.application.lib.Models.Common;
 using data.application.lib;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -35,6 +36,34 @@ public sealed class DataServiceSqlServer : IDataServiceSqlServer
         });
         return dt;
     }
+
+    public async Task SaveRawDataToDB(DataTable dtTable, string dbTableName="RawData")
+    {
+        if (dtTable is null || dtTable.Rows.Count == 0)
+        {
+            return;
+        }
+
+        DataTable newTable = new DataTable();
+        newTable.Columns.Add("Id", typeof(long));
+        newTable.Columns.Add("BatchId", typeof(string));
+        foreach (DataColumn col in dtTable.Columns)
+            newTable.Columns.Add(col.ColumnName, col.DataType);
+
+        string BatchId = DateTime.Now.ToString("yyyyMMdd-HHmmss");
+        foreach (DataRow row in dtTable.Rows)
+        {
+            DataRow newRow = newTable.NewRow();
+            //newRow["Id"] = "NewData1";
+            newRow["BatchId"] = BatchId;
+            for (int i = 2; i < newTable.Columns.Count; i++)
+                newRow[i] = row[i - 2];
+            newTable.Rows.Add(newRow);
+        }
+
+        await BulkCopy(dbTableName, newTable);
+    }
+
 
     public async Task<string> BulkCopy(string dbTableName, DataTable dtTable)
     {

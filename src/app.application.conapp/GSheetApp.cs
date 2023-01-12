@@ -2,6 +2,7 @@
 using core.application.lib.Models.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.Data;
 
 namespace app.application.conapp;
 
@@ -24,7 +25,7 @@ public sealed class GSheetApp
         _dataServiceSqlServer = dataServiceSqlServer;
     }
 
-    public void Run()
+    public async Task Run()
     {
         _log.LogInformation("Starting Entrypoint: {entrypoint}", "Run");
 
@@ -44,10 +45,10 @@ public sealed class GSheetApp
                 case "0":
                     break;
                 case "1":
-                    ReadFromGoogleToDB();
+                    await ReadFromGoogleToDB();
                     break;
                 case "2":
-                    WriteToGoogleFromDB();                    
+                    await WriteToGoogleFromDB();                    
                     break;
                 case "3":
                     ClearDB();
@@ -71,19 +72,20 @@ public sealed class GSheetApp
         }
     }
 
-    private async void ReadFromGoogleToDB()
+    private async Task ReadFromGoogleToDB()
     {
         Console.WriteLine("ReadFromGoogleToDB");
-        var values = await _gSheetService.ReadGoogleSheet()!;
-        if (values != null && values.Count > 0)
+        var dtTable = await _gSheetService.ReadGoogleSheetAsDataTable()!;
+        await _dataServiceSqlServer.SaveRawDataToDB(dtTable);
+        if (dtTable != null && dtTable.Rows.Count > 0)
         {            
-            foreach (var row in values)
+            foreach (DataRow row in dtTable.Rows)
             {
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
-                foreach (var col in row)
+                foreach (DataColumn col in dtTable.Columns)
                 {
-                    Console.Write("{0}, ", col);
+                    Console.Write("{0}, ", row[col.ColumnName]);
                 }
             }            
         }
@@ -94,9 +96,12 @@ public sealed class GSheetApp
         Console.Read();
     }
 
-    private void WriteToGoogleFromDB()
+    private async Task WriteToGoogleFromDB()
     {
-        Console.WriteLine("WriteToGoogleFromDB");
+        await Task.Run(() =>
+        {
+            Console.WriteLine("WriteToGoogleFromDB");
+        });
     }
 
     private void ClearDB()

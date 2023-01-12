@@ -11,7 +11,7 @@ namespace app.application.conapp;
 
 static class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {        
         var builder = new ConfigurationBuilder();
         BuildConfig(builder);
@@ -35,7 +35,7 @@ static class Program
             .Build();       
 
         var app = ActivatorUtilities.CreateInstance<GSheetApp>(host.Services);
-        app.Run();
+        await app.Run();
     }
 
     static void BuildConfig(IConfigurationBuilder builder)
