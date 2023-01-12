@@ -1,9 +1,13 @@
 ﻿using core.application.lib.Interfaces;
-using core.application.lib.Models.Common;
 using core.application.lib.Models.Configurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Google.Apis.Sheets.v4;
+using Google.Apis.Sheets.v4.Data;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using static Google.Apis.Requests.BatchRequest;
 
 namespace app.application.conapp.Services;
 
@@ -13,6 +17,10 @@ public class GSheetService : IGSheetService
     private readonly IConfiguration _config;
     private readonly GSheetOptions _gSheetOptions;
 
+    private readonly string[] _scopes = { SheetsService.Scope.Spreadsheets };
+    private readonly string _applicationName;
+    private readonly string _spreadsheetId;
+
     public GSheetService(
         ILogger<GSheetService> log,
         IConfiguration config,
@@ -21,19 +29,37 @@ public class GSheetService : IGSheetService
         _log = log;
         _config = config;
         _gSheetOptions = gSheetOptions.Value;
+        _applicationName = _gSheetOptions.ApplicationName;
+        _spreadsheetId = _gSheetOptions.InputSheetId??string.Empty;
+    }   
+
+    public async Task<IList<IList<object>>>? ReadGoogleSheet(string? range)
+    {        
+        return await ReadData(range ?? _gSheetOptions.DefaultSheetName)!;
     }
 
-    public void Run()
+    public void WriteGoogleSheet()
+    { }
+
+    public async Task<IList<IList<object>>>? ReadData(string range)
     {
-        _log.LogInformation("Starting Entrypoint: {entrypoint}", "Run");
+        var credential = GoogleCredential.FromFile("credentials.json").CreateScoped(_scopes);
+        var service = new SheetsService(new BaseClientService.Initializer()
+        {
+            HttpClientInitializer = credential,
+            ApplicationName = _applicationName,
+        });
 
-        var sqlServerConnectionString = _config.GetConnectionString(Constants.ConfigSections.ConectionStringSqlServer);
-
-        _log.LogInformation("Config: {ConectionStringSqlServer}", sqlServerConnectionString);
-
-        _log.LogInformation("ConfigSheet: {HeaderRow}", _gSheetOptions.HeaderRow);
-        _log.LogInformation("ConfigSheet: {InputSheetId}", _gSheetOptions.InputSheetId);
-        _log.LogInformation("ConfigSheet: {OutputSheetName}", string.Format(_gSheetOptions.OutputSheetName??"NewSheet", DateTime.Now.ToString("yyyyMMdd-hhmmss")));
+        var rangeToRead = range;
+        var request = service.Spreadsheets.Values.Get(_spreadsheetId, rangeToRead);
+        IList<IList<object>>? values = null;
+        await Task.Run(() =>
+        {
+            var response = request.Execute();
+            values = response.Values;
+        });       
+        
+        return values!;
     }
 
 }

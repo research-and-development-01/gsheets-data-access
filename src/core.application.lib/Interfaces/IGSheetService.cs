@@ -2,5 +2,6 @@
 
 public interface IGSheetService
 {
-    void Run();
+    Task<IList<IList<object>>>? ReadGoogleSheet(string? range=null );
+    void WriteGoogleSheet();
 }

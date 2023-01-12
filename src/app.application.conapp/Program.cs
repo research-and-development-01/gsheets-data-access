@@ -29,11 +29,12 @@ static class Program
             {
                 services.AddOptions<GSheetOptions>().Bind(context.Configuration.GetSection(ConfigSections.GSheetSection));
                 services.AddTransient<IGSheetService, GSheetService>();
+                services.AddTransient<IDataServiceSqlServer, DataServiceSqlServer>();
             })
             .UseSerilog()
             .Build();       
 
-        var app = ActivatorUtilities.CreateInstance<GSheetService>(host.Services);
+        var app = ActivatorUtilities.CreateInstance<GSheetApp>(host.Services);
         app.Run();
     }
 
