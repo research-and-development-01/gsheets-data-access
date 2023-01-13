@@ -98,14 +98,14 @@ public sealed class GSheetApp
 
     private async Task WriteToGoogleFromDB()
     {
-        await Task.Run(() =>
-        {
-            Console.WriteLine("WriteToGoogleFromDB");
-        });
+        Console.WriteLine("WriteToGoogleFromDB");
+        var dtTable = await _dataServiceSqlServer.GetRawData();
+        var sheetUrl = await _gSheetService.WriteGoogleSheet(dtTable);
+        Console.WriteLine($"SpreadSheet Generated: {sheetUrl}");
     }
 
     private void ClearDB()
     {
-        Console.WriteLine("ClearDB");
+        Console.WriteLine("not implemented yet");
     }
 }

@@ -8,4 +8,5 @@ public sealed class GSheetOptions
     public string? InputSheetId { get; set; }
     public string? OutputSheetName { get; set; }
     public string ApplicationName { get; set; } = "gsheet";
+    public string? EmailToShare { get; set; }
 }

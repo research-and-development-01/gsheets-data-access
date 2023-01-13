@@ -26,10 +26,10 @@ public sealed class DataServiceSqlServer : IDataServiceSqlServer
             , DACManagers.SqlServerDACManager);
     }
 
-    public async Task<DataTable?> GetEmployeeData()
+    public async Task<DataTable> GetRawData()
     {
-        string sql = "";
-        DataTable? dt = null;
+        string sql = "Select * from RawData";
+        DataTable? dt = new DataTable();
         await Task.Run(() =>
         {
             dt = _dACManager.GetDataTable(sql);
